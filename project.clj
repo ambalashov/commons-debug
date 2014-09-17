@@ -1,5 +1,5 @@
 (defproject loopme/debug "0.1.0"
-            :description "Loopme cache library."
+            :description "Loopme debug library."
             :license {:name "MIT license"
                       :url "http://opensource.org/licenses/MIT"}
             :source-paths ["src"]
