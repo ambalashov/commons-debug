@@ -23,36 +23,39 @@ public class Logger implements Serializable {
         LOCK = new ReentrantLock();
     }
 
-    private static String parseMessage(String message) {
+    private static String trimToEmpty(String message) {
         if(message == null) {
             return "";
         }
         return message;
     }
 
-    public static void print() throws IOException {
-        print("");
-    }
-
     public static void print(Throwable e) throws IOException {
         if(e == null) {
-            print();
             return;
         }
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
+        final StringWriter stringWriter = new StringWriter();
+        final PrintWriter printWriter = new PrintWriter(stringWriter);
         e.printStackTrace(printWriter);
         LOGGER.get().append(stringWriter.toString());
     }
 
     public static void print(String message) throws IOException {
-        LOGGER.get().append(parseMessage(message)).append("\n");
+        LOGGER.get().append(trimToEmpty(message));
+    }
+
+    public static void println() throws IOException {
+        LOGGER.get().append('\n');
+    }
+
+    public static void println(String message) throws IOException {
+        LOGGER.get().append(trimToEmpty(message)).append('\n');
     }
 
     public static void end() throws IOException {
         try {
             LOCK.lock();
-            System.out.println(LOGGER.get().toString());
+            System.out.write(LOGGER.get().append('\n').toString().getBytes());
             LOGGER.get().setLength(0);
         } finally {
             LOCK.unlock();
