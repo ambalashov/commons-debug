@@ -1,0 +1,43 @@
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.class
+/.lein-*
+/.nrepl-port
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+/lib/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+
+# Icon must ends with two \r.
+Icon
+
+# Thumbnails
+._*
+
+*.log
+
+*.swp
+
+# =====================================
+# idea project files
+/.idea/
+*.iml
+
+# =====================================
+# temporary build scripts
+/build.sh
+/build.bat
+
+# file for inject version
+/resources/version
